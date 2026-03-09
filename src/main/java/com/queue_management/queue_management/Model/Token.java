@@ -18,14 +18,14 @@ public class Token {
     @Column(name = "service")
     private String service;
     @Column(name = "token_number")
-    private int tokenNumber;
+    private String tokenNumber;
     @Column(name = "status")
     private String status; // e.g., PENDING, SERVING, COMPLETED
 
     public Token() {
     }
 
-    public Token(Long id, String userName, String service, int tokenNumber, String status) {
+    public Token(Long id, String userName, String service, String tokenNumber, String status) {
         this.id = id;
         this.userName = userName;
         this.service = service;
@@ -57,11 +57,11 @@ public class Token {
         this.service = service;
     }
 
-    public int getTokenNumber() {
+    public String getTokenNumber() {
         return tokenNumber;
     }
 
-    public void setTokenNumber(int tokenNumber) {
+    public void setTokenNumber(String tokenNumber) {
         this.tokenNumber = tokenNumber;
     }
 
