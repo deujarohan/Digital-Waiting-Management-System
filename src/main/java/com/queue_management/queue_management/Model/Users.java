@@ -1,17 +1,17 @@
 package com.queue_management.queue_management.Model;
 
 
-public class User {
+public class Users {
     private Long id;
     private String name;
     private String email;
     private String phoneNumber;
     private int queueNumber;
 
-    private User() {
+    private Users() {
     }
 
-    public User(Long id, String name, String email, String phoneNumber, int queueNumber) {
+    public Users(Long id, String name, String email, String phoneNumber, int queueNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
