@@ -48,7 +48,7 @@ public class AdminController {
     }
 
     // Delete token by ID
-    @DeleteMapping("/token/{id}")
+    @DeleteMapping("/delete/token/{id}")
     public ResponseEntity<String> deleteToken(@PathVariable Long id) {
         boolean deleted = adminService.deleteToken(id);
         if (deleted) {
@@ -60,7 +60,7 @@ public class AdminController {
     }
 
     // Delete all tokens
-    @DeleteMapping("/all")
+    @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteAllTokens() {
         adminService.deleteAllTokens();
         return ResponseEntity.ok("All tokens deleted successfully");

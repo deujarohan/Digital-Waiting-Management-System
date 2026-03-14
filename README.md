@@ -15,3 +15,9 @@ Ticket
 |
 |
 QueueLog
+
+Queue_Management_Project/
+├── queue_management/ (Microservice 1 - Library/REST API on port 8080)
+│ └── Installed to local Maven repo as dependency
+└── admine_management/ (Microservice 2 - Admin UI on port 8081)
+└── Successfully using queue_management as dependency
