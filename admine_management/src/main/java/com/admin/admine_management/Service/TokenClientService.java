@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.admin.admine_management.Model.Token;
+import com.queue_management.queue_management.Model.Token;
 
 @Service
 public class TokenClientService {

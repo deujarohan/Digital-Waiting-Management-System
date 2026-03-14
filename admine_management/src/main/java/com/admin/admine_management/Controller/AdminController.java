@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.admin.admine_management.Model.Token;
+import com.queue_management.queue_management.Model.Token;
 import com.admin.admine_management.Service.TokenClientService;
 import com.admin.admine_management.Service.adminService;
 

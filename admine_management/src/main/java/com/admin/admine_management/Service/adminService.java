@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.admin.admine_management.Model.Token;
-import com.admin.admine_management.Repository.tokenRepo;
+import com.queue_management.queue_management.Model.Token;
+import com.queue_management.queue_management.Repository.tokenRepo;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class adminService {
@@ -15,15 +17,19 @@ public class adminService {
     private tokenRepo tokenRepo;
     
     // Serve next token
+    @Transactional
     public Token serveNextToken() {
         Token nextToken = tokenRepo.findFirstByStatusOrderByIdAsc("WAITING");
         if (nextToken != null) {
-            // nextToken.setStatus("PENDING");
-            nextToken.setStatus("COMPLETED"); // or SERVING first, then COMPLETED after work
-            tokenRepo.save(nextToken);
-            tokenRepo.delete(nextToken);
+            // Option 1: Mark as COMPLETED and keep in database (for history)
+            nextToken.setStatus("COMPLETED");
+            return tokenRepo.save(nextToken);  // Save and return
+            
+            // Option 2: Remove from queue after serving (delete)
+            // tokenRepository.delete(nextToken);
+            // return nextToken;
         }
-        return nextToken;   
+        return null;  // No waiting tokens   
     }
 
     // Delete token by ID
