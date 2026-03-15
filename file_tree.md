@@ -5,8 +5,6 @@ Queue_Management_Project/
 │ ├─ .mvn/
 │ │ └─ wrapper/
 │ │ └─ maven-wrapper.properties
-│ ├─ .vscode/
-│ │ └─ settings.json
 │ ├─ src/
 │ │ ├─ main/
 │ │ │ ├─ java/
@@ -18,8 +16,7 @@ Queue_Management_Project/
 │ │ │ │ ├─ Model/
 │ │ │ │ │ └─ Admin.java
 │ │ │ │ ├─ Repository/
-│ │ │ │ │ ├─ adminRepository.java
-│ │ │ │ │ └─ tokenRepo.java
+│ │ │ │ │ └─ adminRepository.java
 │ │ │ │ ├─ Service/
 │ │ │ │ │ ├─ adminService.java
 │ │ │ │ │ └─ TokenClientService.java
@@ -44,8 +41,7 @@ Queue_Management_Project/
 │ │ │ │ ├─ Model/
 │ │ │ │ │ └─ Admin.class
 │ │ │ │ ├─ Repository/
-│ │ │ │ │ ├─ adminRepository.class
-│ │ │ │ │ └─ tokenRepo.class
+│ │ │ │ │ └─ adminRepository.class
 │ │ │ │ ├─ Service/
 │ │ │ │ │ ├─ adminService.class
 │ │ │ │ │ └─ TokenClientService.class
@@ -53,13 +49,12 @@ Queue_Management_Project/
 │ │ │ └─ application.properties
 │ │ ├─ generated-sources/
 │ │ │ └─ annotations/
-│ │ ├─ generated-test-sources/
-│ │ │ └─ test-annotations/
-│ │ └─ test-classes/
-│ │ └─ com/
-│ │ └─ admin/
-│ │ └─ admine_management/
-│ │ └─ AdmineManagementApplicationTests.class
+│ │ └─ maven-status/
+│ │ └─ maven-compiler-plugin/
+│ │ └─ compile/
+│ │ └─ default-compile/
+│ │ ├─ createdFiles.lst
+│ │ └─ inputFiles.lst
 │ ├─ .gitattributes
 │ ├─ .gitignore
 │ ├─ HELP.md
@@ -135,7 +130,7 @@ Queue_Management_Project/
 │ │ │ ├─ createdFiles.lst
 │ │ │ └─ inputFiles.lst
 │ │ ├─ surefire-reports/
-│ │ │ ├─ 2026-03-13T22-56-22_027.dumpstream
+│ │ │ ├─ 2026-03-14T19-31-19_400.dumpstream
 │ │ │ ├─ com.queue_management.queue_management.QueueManagementApplicationTests.txt
 │ │ │ └─ TEST-com.queue_management.queue_management.QueueManagementApplicationTests.xml
 │ │ ├─ test-classes/
@@ -143,8 +138,8 @@ Queue_Management_Project/
 │ │ │ └─ queue_management/
 │ │ │ └─ queue_management/
 │ │ │ └─ QueueManagementApplicationTests.class
-│ │ ├─ queue_management-0.0.1-SNAPSHOT.jar
-│ │ └─ queue_management-0.0.1-SNAPSHOT.jar.original
+│ │ ├─ queue_management-0.0.1-SNAPSHOT-exec.jar
+│ │ └─ queue_management-0.0.1-SNAPSHOT.jar
 │ ├─ .gitattributes
 │ ├─ .gitignore
 │ ├─ HELP.md
@@ -152,4 +147,5 @@ Queue_Management_Project/
 │ ├─ mvnw.cmd
 │ ├─ pom.xml
 │ └─ README.md
+├─ file_tree.md
 └─ README.md
