@@ -1,5 +1,6 @@
 package com.admin.admine_management.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,13 +17,25 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "password")
 @Table(name = "admin")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    private String phoneNumber;
+    @Column(nullable = false)
+    private String name;        // Display name (your app needs this)
+    
+    @Column(unique = true, nullable = false)
+    private String email;       // Used as username for login
+    
+    private String phoneNumber; // Contact info (your app needs this)
+    
+    // 🔐 SECURITY FIELDS (MISSING IN YOUR VERSION)
+    
+    @Column(nullable = false)
+    private String password;    // CRITICAL - Encrypted password
+    
+    @Column(nullable = false)
+    private String role;        // CRITICAL - "ADMIN" or "FRONT_OFFICER"
 }

@@ -3,6 +3,8 @@ package com.admin.admine_management.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.admin.admine_management.Model.Admin;
+import com.admin.admine_management.Repository.adminRepository;
 import com.queue_management.queue_management.Model.Token;
 import com.queue_management.queue_management.Repository.tokenRepo;
 
@@ -13,6 +15,9 @@ public class adminService {
     
     @Autowired
     private tokenRepo tokenRepo;
+
+    @Autowired
+    private adminRepository adminRepo;
     
     // Serve next token
     @Transactional
@@ -44,4 +49,10 @@ public class adminService {
     public void deleteAllTokens() {
         tokenRepo.deleteAll();
     }
+
+    // Register admin
+    public Admin register(Admin user) {
+        return adminRepo.save(user);
+    }
+
 }

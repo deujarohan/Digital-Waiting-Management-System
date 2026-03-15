@@ -5,14 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.queue_management.queue_management.Model.Token;
+import com.admin.admine_management.Model.Admin;
 import com.admin.admine_management.Service.TokenClientService;
 import com.admin.admine_management.Service.adminService;
 
@@ -24,6 +27,8 @@ public class AdminController {
 
     @Autowired
     private adminService adminService;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     // Admin page
     @GetMapping("/admin")
@@ -64,5 +69,11 @@ public class AdminController {
     public ResponseEntity<String> deleteAllTokens() {
         adminService.deleteAllTokens();
         return ResponseEntity.ok("All tokens deleted successfully");
+    }
+
+    @PostMapping("/admin/register")
+    public Admin register(@RequestBody Admin user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        return adminService.register(user);
     }
 }
