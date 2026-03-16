@@ -14,9 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
 
 
-@RestController
+@Controller
 public class TokenController {
 
     @Autowired
@@ -24,7 +25,8 @@ public class TokenController {
 
     @GetMapping("/")
     public String welcome() {
-        return "Welcome to Queue Management System";
+        // return "Welcome to Queue Management System";
+        return "index";
     }
 
     @PostMapping("/create")

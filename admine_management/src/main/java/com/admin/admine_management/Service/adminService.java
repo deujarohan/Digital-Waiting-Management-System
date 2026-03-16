@@ -1,5 +1,7 @@
 package com.admin.admine_management.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class adminService {
 
     @Autowired
     private adminRepository adminRepo;
+
+    // Get all tokens as a list
+    public List<Token> getAllTokens() {
+        return tokenRepo.findAll();
+    }
     
     // Serve next token
     @Transactional

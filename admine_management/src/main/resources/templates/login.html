@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarnia Bank — Admin Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- Left Panel -->
+      <div class="brand-panel">
+        <div class="brand-content">
+          <div class="logo">
+            <div class="logo-icon"><span></span><span></span><span></span></div>
+            <h1 class="logo-name">QFlow</h1>
+          </div>
+          <p class="brand-tagline">
+            Effortless queue management.<br />Exceptional customer experience.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-number">40%</span>
+              <span class="stat-label">Faster Service</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">3x</span>
+              <span class="stat-label">More Throughput</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-deco" aria-hidden="true">
+          <svg
+            viewBox="0 0 400 300"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="320"
+              cy="60"
+              r="120"
+              fill="#00BFFF"
+              fill-opacity="0.12"
+            />
+            <circle
+              cx="80"
+              cy="250"
+              r="90"
+              fill="#B0E0E6"
+              fill-opacity="0.18"
+            />
+            <circle
+              cx="350"
+              cy="240"
+              r="60"
+              fill="#00BFFF"
+              fill-opacity="0.08"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Panel — Login Form -->
+      <div class="form-panel">
+        <div class="form-card">
+          <div class="form-header">
+            <h2>Welcome back</h2>
+            <p>Sign in to your business dashboard</p>
+          </div>
+
+          <form class="login-form" action="/login" method="post">
+            <div class="field-group">
+              <label for="email">Email address</label>
+              <div class="input-wrapper">
+                <svg
+                  class="input-icon"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.5 5.833A1.667 1.667 0 014.167 4.167h11.666A1.667 1.667 0 0117.5 5.833v8.334a1.667 1.667 0 01-1.667 1.666H4.167A1.667 1.667 0 012.5 14.167V5.833z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2.5 5.833L10 11.25l7.5-5.417"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@business.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="password">Password</label>
+              <div class="input-wrapper">
+                <svg
+                  class="input-icon"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="3.5"
+                    y="8.5"
+                    width="13"
+                    height="9"
+                    rx="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M6.5 8.5V6a3.5 3.5 0 017 0v2.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="10" cy="13" r="1.25" fill="currentColor" />
+                </svg>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  class="toggle-pw"
+                  onclick="togglePassword()"
+                  aria-label="Show password"
+                >
+                  <svg
+                    id="eye-icon"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                    <circle
+                      cx="10"
+                      cy="10"
+                      r="2.5"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-meta">
+              <label class="remember-me">
+                <input type="checkbox" name="remember" />
+                <span>Remember me</span>
+              </label>
+              <a href="/forgot-password" class="forgot-link"
+                >Forgot password?</a
+              >
+            </div>
+
+            <button type="submit" class="btn-login">Sign In</button>
+
+            <p class="signup-prompt">
+              New to QFlow? <a href="/register">Create a business account</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const pw = document.getElementById("password");
+        pw.type = pw.type === "password" ? "text" : "password";
+      }
+    </script>
+  </body>
+</html>

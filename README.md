@@ -1,5 +1,7 @@
 This system will manage walk-in customers for multiple service counters in a bank branch.
 
+my application is a Queue management project, its a service that can be used by business to manage there queue, and make customer expirence more efficent and fast
+
 token, user, service, queuelog
 
 ERD

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.queue_management.queue_management.Model.Token;
+import com.queue_management.queue_management.Repository.tokenRepo;
 import com.admin.admine_management.Model.Admin;
 import com.admin.admine_management.Service.TokenClientService;
 import com.admin.admine_management.Service.adminService;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Component
-@RestController
+@Controller
 public class AdminController {
     @Autowired
     private TokenClientService tokenClientService;
@@ -33,13 +37,20 @@ public class AdminController {
     // Admin page
     @GetMapping("/admin")
     public String getAdminPage() {
-        return "This is Admin page.";
+        return "login";
     }
 
     // Get all tokens
+    // @GetMapping("/admin/tokens")
+    // public List<Token> getAllTokens() {
+    //     return tokenClientService.getTokens();  // call token-service API
+    // }
+
     @GetMapping("/admin/tokens")
-    public List<Token> getAllTokens() {
-        return tokenClientService.getTokens();  // call token-service API
+    public List<Token> getAllTokens(Model model) {
+        List<Token> tokens = adminService.getAllTokens();
+        model.addAttribute("tokens", tokens);
+        return tokens;
     }
 
     // Serve next token

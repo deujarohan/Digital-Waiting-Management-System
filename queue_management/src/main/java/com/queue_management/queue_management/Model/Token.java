@@ -8,10 +8,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Table(name = "tokens")
 public class Token {
     @Id
@@ -31,66 +41,8 @@ public class Token {
     @JsonProperty("status")
     private String status; // e.g., PENDING, SERVING, COMPLETED
 
-    public Token() {
-    }
-
-    public Token(Long id, String userName, String service, String tokenNumber, String status) {
-        this.id = id;
-        this.userName = userName;
-        this.service = service;
-        this.tokenNumber = tokenNumber;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
-    }
-
-    public String getTokenNumber() {
-        return tokenNumber;
-    }
-
-    public void setTokenNumber(String tokenNumber) {
-        this.tokenNumber = tokenNumber;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Token{" +
-                "id=" + id +
-                ", user=" + userName +
-                ", service=" + service +
-                ", tokenNumber=" + tokenNumber +
-                ", status='" + status + '\'' +
-                '}';
-    }
+    // public void setStatus(String status) {
+    //     this.status = status;
+    // }
 
 }

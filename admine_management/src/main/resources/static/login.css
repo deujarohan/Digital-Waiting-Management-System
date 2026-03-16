@@ -1,0 +1,374 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --sky: #00bfff;
+  --powder: #b0e0e6;
+  --snow: #fffafa;
+  --sky-dark: #0099cc;
+  --text-dark: #1a2e3b;
+  --text-mid: #4a6374;
+  --text-soft: #7a97a8;
+  --border: #daedf2;
+  --white: #ffffff;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--snow);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* ── Layout ──────────────────────────────────────── */
+
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Brand Panel (Left) ──────────────────────────── */
+
+.brand-panel {
+  flex: 1 1 45%;
+  background: linear-gradient(145deg, #0099d6 0%, #00bfff 50%, #4dd6ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-content {
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2.5rem;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px;
+}
+
+.logo-icon span {
+  display: block;
+  width: 5px;
+  border-radius: 3px;
+  background: #ffffff;
+}
+
+.logo-icon span:nth-child(1) {
+  height: 14px;
+}
+.logo-icon span:nth-child(2) {
+  height: 20px;
+}
+.logo-icon span:nth-child(3) {
+  height: 10px;
+}
+
+.logo-name {
+  font-family: "Sora", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.brand-tagline {
+  font-family: "Sora", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  max-width: 340px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: "Sora", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.wave-deco {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 400px;
+  height: 300px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Form Panel (Right) ──────────────────────────── */
+
+.form-panel {
+  flex: 1 1 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background-color: var(--snow);
+}
+
+.form-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form-header {
+  margin-bottom: 2.25rem;
+}
+
+.form-header h2 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+/* ── Form Fields ─────────────────────────────────── */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  width: 17px;
+  height: 17px;
+  color: var(--text-soft);
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 2.75rem 0.75rem 2.75rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper input::placeholder {
+  color: #b0c4cc;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.12);
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.toggle-pw svg {
+  width: 17px;
+  height: 17px;
+}
+
+.toggle-pw:hover {
+  color: var(--sky-dark);
+}
+
+/* ── Form Meta Row ───────────────────────────────── */
+
+.form-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-mid);
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--sky);
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 0.88rem;
+  color: var(--sky-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.forgot-link:hover {
+  color: var(--sky);
+  text-decoration: underline;
+}
+
+/* ── Submit Button ───────────────────────────────── */
+
+.btn-login {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  font-family: "Sora", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--sky);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-login:hover {
+  background: var(--sky-dark);
+}
+
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+/* ── Sign Up Prompt ──────────────────────────────── */
+
+.signup-prompt {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+.signup-prompt a {
+  color: var(--sky-dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.signup-prompt a:hover {
+  color: var(--sky);
+  text-decoration: underline;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    flex-direction: column;
+  }
+
+  .brand-panel {
+    flex: none;
+    padding: 2.5rem 2rem;
+    min-height: 260px;
+  }
+
+  .brand-tagline {
+    font-size: 1.2rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .stats-row {
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.4rem;
+  }
+
+  .form-panel {
+    flex: none;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .wave-deco {
+    width: 250px;
+    height: 200px;
+  }
+}
