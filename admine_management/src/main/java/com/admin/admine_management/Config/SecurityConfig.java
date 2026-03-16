@@ -25,16 +25,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //Filters
-        //
         //disable csrf
-        http.csrf(customizer -> customizer.disable());
+        http.csrf(customizer -> customizer.disable())
         //authorize requests
-        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/login", "/css/**").permitAll()  // Allow login page & CSS
+            .anyRequest().authenticated()                       // Everything else needs login
+        )
         //web login
-        http.formLogin(Customizer.withDefaults());
+        // http.formLogin(Customizer.withDefaults());
+        .formLogin(form -> form
+            .loginPage("/admin/login")                                // Your custom login page
+            .defaultSuccessUrl("/admin/dashboard", true)                    // Where to go after login
+            .permitAll()
+        )
+        //logout
+        .logout(logout -> logout
+            .logoutSuccessUrl("/admin/login?logout")                  // Where to go after logout
+            .permitAll()
+        )
         //for postman
-        http.httpBasic(Customizer.withDefaults());
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        .httpBasic(Customizer.withDefaults())
+        .sessionManagement(session -> session
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+        );
         return http.build();
     }
 

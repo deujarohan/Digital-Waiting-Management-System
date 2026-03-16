@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,10 +35,15 @@ public class AdminController {
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
-    // Admin page
-    @GetMapping("/admin")
-    public String getAdminPage() {
-        return "login";
+    // // Admin page
+    // @GetMapping("/admin")
+    // public String getAdminPage() {
+    //     // return "login";
+    // }
+    @GetMapping("/admin/dashboard")
+    public String dashboard() {
+        return "index";
+        // return "Welcome to Admin Page"; // You'll create this later
     }
 
     // Get all tokens
@@ -82,9 +88,25 @@ public class AdminController {
         return ResponseEntity.ok("All tokens deleted successfully");
     }
 
+    // Register admin postman
+    // @PostMapping("/admin/login")
+    // public Admin register(@RequestBody Admin user) {
+    //     user.setPassword(encoder.encode(user.getPassword()));
+    //     return adminService.register(user);
+    // }
+
+    // Register admin frontend browser
     @PostMapping("/admin/register")
-    public Admin register(@RequestBody Admin user) {
+    // public String register(@RequestBody Admin user) {  //@RequestBody is for JSON APIs
+    public String register(@ModelAttribute Admin user) {  //@RequestBody is for JSON APIs
         user.setPassword(encoder.encode(user.getPassword()));
-        return adminService.register(user);
+        adminService.register(user);
+        return "redirect:/admin/login";
+    }
+
+    // Login page
+    @GetMapping("/admin/login")
+    public String loginPage() {
+        return "login";  // Returns login.html from templates folder
     }
 }
