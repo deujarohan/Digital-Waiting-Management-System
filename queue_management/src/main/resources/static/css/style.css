@@ -9,12 +9,193 @@
 body {
   font-family: sans-serif;
   background-color: #fffafa;
-  color: #1a2e3b;
-  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
 }
 
-h1 {
-  font-size: 1.8rem;
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Entry Box ───────────────────────────────────── */
+
+.entry-box {
+  background: #ffffff;
+  border: 1.5px solid #daedf2;
+  border-radius: 12px;
+  padding: 2.25rem 2rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── Header ──────────────────────────────────────── */
+
+.entry-header {
+  margin-bottom: 1.75rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 191, 255, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px;
+}
+
+.logo-icon span {
+  display: block;
+  width: 4px;
+  border-radius: 2px;
+  background: #00bfff;
+}
+
+.logo-icon span:nth-child(1) {
+  height: 10px;
+}
+.logo-icon span:nth-child(2) {
+  height: 15px;
+}
+.logo-icon span:nth-child(3) {
+  height: 7px;
+}
+
+.logo-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a2e3b;
+  letter-spacing: -0.3px;
+}
+
+.entry-header h1 {
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #00bfff;
+  color: #1a2e3b;
+  margin-bottom: 5px;
+}
+
+.entry-header p {
+  font-size: 0.88rem;
+  color: #7a97a8;
+}
+
+/* ── Form Fields ─────────────────────────────────── */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4a6374;
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.93rem;
+  border: 1.5px solid #daedf2;
+  border-radius: 8px;
+  outline: none;
+  background: #fffafa;
+  color: #1a2e3b;
+  transition: border-color 0.2s;
+}
+
+.field-group input::placeholder {
+  color: #b0c4cc;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  border-color: #00bfff;
+}
+
+.field-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a97a8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2rem;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: #cc3300;
+}
+
+/* ── Submit Button ───────────────────────────────── */
+
+button[type="submit"] {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #00bfff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #0099cc;
+}
+
+/* ── Messages ────────────────────────────────────── */
+
+.msg-error {
+  font-size: 0.85rem;
+  color: #cc3300;
+  background: #fff0ed;
+  border: 1px solid #ffcbb8;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 0.5rem;
+}
+
+.msg-success {
+  font-size: 0.85rem;
+  color: #1a6e3c;
+  background: #edfaf3;
+  border: 1px solid #b8f0d0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .entry-box {
+    padding: 1.75rem 1.25rem;
+  }
 }

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import com.queue_management.queue_management.Model.Token;
 
 @Repository
@@ -17,4 +19,7 @@ public interface tokenRepo extends JpaRepository<Token, Long>{
 
      // Optional: find by token number
      Token findByTokenNumber(String tokenNumber);
+
+     //
+     List<Token> findByStatusIn(List<String> statuses);
 }

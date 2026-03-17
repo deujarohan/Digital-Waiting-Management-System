@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarnia Bank — Queue</title>
+    <link rel="stylesheet" th:href="@{/css/landing.css}" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- Header -->
+      <header class="site-header">
+        <h1>Sarnia Bank</h1>
+      </header>
+
+      <!-- Main -->
+      <main class="main-content">
+        <div class="card">
+          <h2>Welcome to Sarnia Bank</h2>
+          <p>Skip the wait. Get your token and we'll serve you in order.</p>
+          <a th:href="@{/create}" class="btn-create">Create Token</a>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <p>© 2025 Sarnia Bank. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>

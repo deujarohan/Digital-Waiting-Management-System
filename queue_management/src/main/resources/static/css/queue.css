@@ -1,0 +1,188 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #fffafa;
+  color: #1a2e3b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ──────────────────────────────────────── */
+
+.site-header {
+  text-align: center;
+  padding: 1.25rem 2rem;
+  border-bottom: 1.5px solid #daedf2;
+  background: #ffffff;
+}
+
+.site-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a2e3b;
+}
+
+/* ── Dashboard Layout ────────────────────────────── */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* ── Shared Panel ────────────────────────────────── */
+
+.panel {
+  background: #ffffff;
+  border: 1.5px solid #daedf2;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+/* ── Token Panel ─────────────────────────────────── */
+
+.token-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 320px;
+}
+
+.token-label {
+  font-size: 0.95rem;
+  color: #7a97a8;
+}
+
+.token-number {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #00bfff;
+  line-height: 1;
+}
+
+.token-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.token-service {
+  font-size: 0.9rem;
+  color: #4a6374;
+}
+
+.token-status {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #e8f7ff;
+  color: #0099cc;
+}
+
+.token-status.status-serving {
+  background: #edfaf3;
+  color: #1a6e3c;
+}
+
+.token-status.status-completed {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.token-status.status-pending {
+  background: #e8f7ff;
+  color: #0099cc;
+}
+
+/* ── Queue Panel ─────────────────────────────────── */
+
+.queue-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.queue-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #7a97a8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.queue-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #daedf2;
+  border-radius: 8px;
+  background: #fffafa;
+  transition: border-color 0.2s;
+}
+
+.queue-card.card-serving {
+  border-color: #00bfff;
+  background: #f0fbff;
+}
+
+.card-name {
+  font-size: 0.92rem;
+  color: #1a2e3b;
+}
+
+.card-token {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #00bfff;
+}
+
+.queue-empty {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.88rem;
+  color: #b0c4cc;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+
+  .token-panel {
+    min-height: 200px;
+  }
+
+  .token-number {
+    font-size: 4rem;
+  }
+}

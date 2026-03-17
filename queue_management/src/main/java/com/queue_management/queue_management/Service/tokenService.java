@@ -32,4 +32,14 @@ public class tokenService {
         return repo.save(token);
     }
 
+    // Find token by ID
+    public Token findById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Token not found"));
+    }
+    // Find token by status
+    public List<Token> findByStatusIn(List<String> statuses) {
+        return repo.findByStatusIn(statuses);
+    }
+
 }

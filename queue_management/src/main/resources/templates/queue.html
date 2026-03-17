@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarnia Bank — Queue Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/queue.css}" />
+  </head>
+  <body>
+    <!-- ── Header ───────────────────────────────────── -->
+    <header class="site-header">
+      <h1>Sarnia Bank</h1>
+    </header>
+
+    <!-- ── Dashboard ────────────────────────────────── -->
+    <main class="dashboard">
+      <!-- Left Panel — Your Token -->
+      <div class="panel token-panel">
+        <p class="token-label">Your Token Number</p>
+        <span class="token-number" th:text="${token.tokenNumber}">15</span>
+        <div class="token-meta">
+          <p class="token-service" th:text="${token.service}">Service</p>
+          <span
+            class="token-status"
+            th:text="${token.status}"
+            th:classappend="${token.status == 'SERVING'} ? 'status-serving' :
+                             (${token.status == 'COMPLETED'} ? 'status-completed' : 'status-pending')"
+          >
+            PENDING
+          </span>
+        </div>
+      </div>
+
+      <!-- Right Panel — Queue List -->
+      <div class="panel queue-panel">
+        <p class="queue-title">Queue List</p>
+
+        <div class="queue-list">
+          <div
+            class="queue-card"
+            th:each="t : ${queueList}"
+            th:classappend="${t.status == 'SERVING'} ? 'card-serving' : ''"
+          >
+            <span class="card-name" th:text="${t.userName}">User Name</span>
+            <span class="card-token" th:text="${t.tokenNumber}">6</span>
+          </div>
+
+          <!-- Empty state -->
+          <div class="queue-empty" th:if="${#lists.isEmpty(queueList)}">
+            <p>No one in the queue yet.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
