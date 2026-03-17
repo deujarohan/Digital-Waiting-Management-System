@@ -40,10 +40,17 @@ public class AdminController {
     // public String getAdminPage() {
     //     // return "login";
     // }
+
+    // landing page for postman
+    // @GetMapping("/admin/dashboard")
+    // public String dashboard() {
+    //     return "Welcome to Admin Page"; // You'll create this later
+    // }
+
     @GetMapping("/admin/dashboard")
-    public String dashboard() {
-        return "index";
-        // return "Welcome to Admin Page"; // You'll create this later
+    public String dashboard(Model model) {
+        model.addAttribute("tokens", adminService.getAllTokens());
+        return "index"; 
     }
 
     // Get all tokens
@@ -59,34 +66,42 @@ public class AdminController {
         return tokens;
     }
 
+    // Serve next token for postman
+    // @PostMapping("/admin/serve-next")
+    // public ResponseEntity<Token> serveNextToken() {
+    //     Token token = adminService.serveNextToken();
+    //     if (token == null) {
+    //         return ResponseEntity.noContent().build();
+    //     }
+    //     return ResponseEntity.ok(token);
+    // }
+
     // Serve next token
-    @PostMapping("/admin/serve-next")
-    public ResponseEntity<Token> serveNextToken() {
-        Token token = adminService.serveNextToken();
-        if (token == null) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(token);
+    @PostMapping("/serve-next")
+    public String serveNextToken() {
+        adminService.serveNextToken();
+        return "redirect:/admin/dashboard";
     }
 
-    // Delete token by ID
-    @DeleteMapping("/delete/token/{id}")
-    public ResponseEntity<String> deleteToken(@PathVariable Long id) {
-        boolean deleted = adminService.deleteToken(id);
-        if (deleted) {
-            return ResponseEntity.ok("Token deleted successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("Token not found");
-        }
-    }
+    //Postman delete token
 
-    // Delete all tokens
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<String> deleteAllTokens() {
-        adminService.deleteAllTokens();
-        return ResponseEntity.ok("All tokens deleted successfully");
-    }
+    // // Delete token by ID
+    // @DeleteMapping("/delete/token/{id}")
+    // public ResponseEntity<String> deleteToken(@PathVariable Long id) {
+    //     boolean deleted = adminService.deleteToken(id);
+    //     if (deleted) {
+    //         return ResponseEntity.ok("Token deleted successfully");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+    //                              .body("Token not found");
+    //     }
+    // }
+    // // Delete all tokens
+    // @DeleteMapping("/delete/all")
+    // public ResponseEntity<String> deleteAllTokens() {
+    //     adminService.deleteAllTokens();
+    //     return ResponseEntity.ok("All tokens deleted successfully");
+    // }
 
     // Register admin postman
     // @PostMapping("/admin/login")
@@ -94,6 +109,27 @@ public class AdminController {
     //     user.setPassword(encoder.encode(user.getPassword()));
     //     return adminService.register(user);
     // }
+
+    // Delete one token
+    @PostMapping("/delete/{id}")
+    public String deleteToken(@PathVariable Long id) {
+        adminService.deleteToken(id);
+        return "redirect:/admin/dashboard";
+    }
+
+    // Delete all tokens
+    @PostMapping("/delete-all")
+    public String deleteAllTokens() {
+        adminService.deleteAllTokens();
+        return "redirect:/admin/dashboard";
+    }
+
+    // Complete current token
+    @PostMapping("/complete/{id}")
+    public String completeToken(@PathVariable Long id) {
+        adminService.completeToken(id);
+        return "redirect:/admin/dashboard";
+    }
 
     // Register admin frontend browser
     @PostMapping("/admin/register")

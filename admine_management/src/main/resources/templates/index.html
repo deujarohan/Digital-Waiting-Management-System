@@ -3,13 +3,144 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:text="${pageTitle} ?: 'QFlow'">QFlow</title>
-    <link rel="stylesheet" th:href="@{/css/index.css}" />
-    <style></style>
+    <title>Sarnia Bank — Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
   </head>
   <body>
-    <h1 th:text="${pageTitle} ?: 'QFlow Dashboard'">
-      Welcome to Admin Dashboard
-    </h1>
+    <!-- Header -->
+    <header class="site-header">
+      <h1>Sarnia Bank</h1>
+      <span class="header-badge">Admin Dashboard</span>
+    </header>
+
+    <main class="main-content">
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div>
+          <h2>Token Queue</h2>
+          <p>Manage and serve customers in order.</p>
+        </div>
+        <div class="action-buttons">
+          <!-- Serve Next Token -->
+          <form th:action="@{/admin/serve-next}" method="post">
+            <button type="submit" class="btn btn-primary">
+              Serve Next Token
+            </button>
+          </form>
+
+          <!-- Delete All -->
+          <form
+            th:action="@{/admin/delete-all}"
+            method="post"
+            onsubmit="return confirm('Delete all tokens?')"
+          >
+            <button type="submit" class="btn btn-danger">Clear All</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <p class="stat-label">Total</p>
+          <p class="stat-value" th:text="${tokens.size()}">0</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Waiting</p>
+          <p
+            class="stat-value"
+            th:text="${#lists.size(tokens.?[status == 'WAITING'])}"
+          >
+            0
+          </p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Serving</p>
+          <p
+            class="stat-value"
+            th:text="${#lists.size(tokens.?[status == 'SERVING'])}"
+          >
+            0
+          </p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Completed</p>
+          <p
+            class="stat-value"
+            th:text="${#lists.size(tokens.?[status == 'COMPLETED'])}"
+          >
+            0
+          </p>
+        </div>
+      </div>
+
+      <!-- Token Table -->
+      <div class="table-panel">
+        <div class="table-header">All Tokens</div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Token No.</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Empty state -->
+            <tr class="empty-row" th:if="${#lists.isEmpty(tokens)}">
+              <td colspan="6">No tokens in the system yet.</td>
+            </tr>
+
+            <!-- Token rows -->
+            <tr th:each="t, i : ${tokens}">
+              <td data-label="No" th:text="${i.count}">1</td>
+              <td data-label="Token" th:text="${t.tokenNumber}">001</td>
+              <td data-label="Customer" th:text="${t.userName}">John Smith</td>
+              <td data-label="Service" th:text="${t.service}">Advice</td>
+              <td data-label="Status">
+                <span
+                  class="badge"
+                  th:text="${t.status}"
+                  th:classappend="${t.status == 'WAITING'}   ? 'badge-waiting'   :
+                               (${t.status == 'PENDING'}   ? 'badge-pending'   :
+                               (${t.status == 'SERVING'}   ? 'badge-serving'   :
+                                                             'badge-completed'))"
+                >
+                  WAITING
+                </span>
+              </td>
+              <td data-label="Actions">
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+                  <!-- Complete button (only show if SERVING) -->
+                  <form
+                    th:if="${t.status == 'SERVING'}"
+                    th:action="@{/admin/complete/{id}(id=${t.id})}"
+                    method="post"
+                  >
+                    <button type="submit" class="btn btn-small btn-complete">
+                      Complete
+                    </button>
+                  </form>
+
+                  <!-- Delete button -->
+                  <form
+                    th:action="@{/admin/delete/{id}(id=${t.id})}"
+                    method="post"
+                    onsubmit="return confirm('Delete this token?')"
+                  >
+                    <button type="submit" class="btn btn-small btn-danger">
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
   </body>
 </html>

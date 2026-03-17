@@ -32,7 +32,7 @@ public class adminService {
         Token nextToken = tokenRepo.findFirstByStatusOrderByIdAsc("WAITING");
         if (nextToken != null) {
             // Option 1: Mark as COMPLETED and keep in database (for history)
-            nextToken.setStatus("COMPLETED");
+            nextToken.setStatus("SERVING");
             return tokenRepo.save(nextToken);  // Save and return
             
             // Option 2: Remove from queue after serving (delete)
@@ -60,6 +60,13 @@ public class adminService {
     // Register admin
     public Admin register(Admin user) {
         return adminRepo.save(user);
+    }
+
+    public void completeToken(Long id) {
+        Token token = tokenRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Token not found"));
+        token.setStatus("COMPLETED");
+        tokenRepo.save(token);
     }
 
 }

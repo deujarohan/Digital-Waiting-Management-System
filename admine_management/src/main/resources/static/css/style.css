@@ -8,13 +8,265 @@
 
 body {
   font-family: sans-serif;
-  background-color: #fffafa;
+  background: #fffafa;
   color: #1a2e3b;
-  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 1.8rem;
+/* ── Header ── */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1.5px solid #daedf2;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header h1 {
+  font-size: 1.3rem;
   font-weight: 600;
+  color: #1a2e3b;
+}
+
+.header-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(0, 191, 255, 0.12);
+  color: #0099cc;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Main ── */
+.main-content {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Action Bar ── */
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.action-bar h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a2e3b;
+}
+
+.action-bar p {
+  font-size: 0.85rem;
+  color: #7a97a8;
+  margin-top: 2px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: #00bfff;
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: #0099cc;
+}
+
+.btn-danger {
+  background: #fff0ed;
+  color: #cc3300;
+  border: 1.5px solid #ffcbb8;
+}
+.btn-danger:hover {
+  background: #ffe0d6;
+}
+
+.btn-small {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+.btn-complete {
+  background: #edfaf3;
+  color: #1a6e3c;
+  border: 1.5px solid #b8f0d0;
+}
+.btn-complete:hover {
+  background: #d6f5e6;
+}
+
+/* ── Stats Row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1.5px solid #daedf2;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: #7a97a8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
   color: #00bfff;
+}
+
+/* ── Table ── */
+.table-panel {
+  background: #ffffff;
+  border: 1.5px solid #daedf2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1.5px solid #daedf2;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #7a97a8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7a97a8;
+  background: #f8fdff;
+  border-bottom: 1.5px solid #daedf2;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f0f7fa;
+  transition: background 0.15s;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+tbody tr:hover {
+  background: #f8fdff;
+}
+
+tbody td {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.9rem;
+  color: #1a2e3b;
+}
+
+/* ── Status Badge ── */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.badge-waiting {
+  background: #fff8e1;
+  color: #b8860b;
+}
+.badge-pending {
+  background: #e8f7ff;
+  color: #0099cc;
+}
+.badge-serving {
+  background: #edfaf3;
+  color: #1a6e3c;
+}
+.badge-completed {
+  background: #f0f0f0;
+  color: #555555;
+}
+
+/* ── Empty ── */
+.empty-row td {
+  text-align: center;
+  padding: 3rem;
+  color: #b0c4cc;
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main-content {
+    padding: 1.25rem;
+  }
+  thead {
+    display: none;
+  }
+  tbody tr {
+    display: block;
+    padding: 1rem 1.5rem;
+  }
+  tbody td {
+    display: block;
+    padding: 0.25rem 0;
+    font-size: 0.88rem;
+  }
+  tbody td::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    color: #7a97a8;
+    font-size: 0.78rem;
+  }
 }
