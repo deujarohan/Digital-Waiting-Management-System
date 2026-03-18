@@ -1,0 +1,227 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background: #fffafa;
+  color: #1a2e3b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1.5px solid #daedf2;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a2e3b;
+}
+
+.header-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #edfaf3;
+  color: #1a6e3c;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Main ── */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.serve-card {
+  background: #ffffff;
+  border: 1.5px solid #daedf2;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* ── Card Header ── */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a2e3b;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-serving {
+  background: #edfaf3;
+  color: #1a6e3c;
+}
+.badge-pending {
+  background: #e8f7ff;
+  color: #0099cc;
+}
+.badge-completed {
+  background: #f0f0f0;
+  color: #555555;
+}
+.badge-waiting {
+  background: #fff8e1;
+  color: #b8860b;
+}
+
+/* ── Token Number ── */
+.token-display {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1.5px solid #daedf2;
+  border-bottom: 1.5px solid #daedf2;
+}
+
+.token-display p {
+  font-size: 0.82rem;
+  color: #7a97a8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+}
+
+.token-display span {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #00bfff;
+  line-height: 1;
+}
+
+/* ── Info Grid ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.info-item {
+  background: #f8fdff;
+  border: 1.5px solid #daedf2;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: #7a97a8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2e3b;
+}
+
+/* ── Action Buttons ── */
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-pending {
+  background: #e8f7ff;
+  color: #0099cc;
+  border: 1.5px solid #b0e0e6;
+}
+.btn-pending:hover {
+  background: #d0efff;
+}
+
+.btn-completed {
+  background: #edfaf3;
+  color: #1a6e3c;
+  border: 1.5px solid #b8f0d0;
+}
+.btn-completed:hover {
+  background: #d6f5e6;
+}
+
+.btn-next {
+  grid-column: span 2;
+  background: #00bfff;
+  color: #ffffff;
+}
+.btn-next:hover {
+  background: #0099cc;
+}
+
+.btn-back {
+  grid-column: span 2;
+  background: none;
+  color: #7a97a8;
+  border: 1.5px solid #daedf2;
+  font-size: 0.85rem;
+}
+.btn-back:hover {
+  background: #f0f7fa;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .serve-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .token-display span {
+    font-size: 3.5rem;
+  }
+}

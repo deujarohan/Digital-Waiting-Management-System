@@ -9,4 +9,5 @@ import com.admin.admine_management.Model.Admin;
 public interface adminRepository extends JpaRepository<Admin, Long>{
     // You can add custom query methods here if needed
     Admin findByEmail(String email);
+    
 }

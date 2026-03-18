@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarnia Bank — Serving Token</title>
+    <link rel="stylesheet" th:href="@{/css/serve-token.css}" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <h1>Sarnia Bank</h1>
+      <span class="header-badge">Now Serving</span>
+    </header>
+
+    <main class="main-content">
+      <div class="serve-card">
+        <!-- Card Header -->
+        <div class="card-header">
+          <h2>Customer Token</h2>
+          <span
+            class="status-badge"
+            th:text="${token.status}"
+            th:classappend="${token.status == 'SERVING'}   ? 'badge-serving'   :
+                             (${token.status == 'PENDING'}   ? 'badge-pending'   :
+                             (${token.status == 'COMPLETED'} ? 'badge-completed' :
+                                                               'badge-waiting'))"
+          >
+            SERVING
+          </span>
+        </div>
+
+        <!-- Token Number -->
+        <div class="token-display">
+          <p>Token Number</p>
+          <span th:text="${token.tokenNumber}">15</span>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="info-grid">
+          <div class="info-item">
+            <p class="info-label">Customer Name</p>
+            <p class="info-value" th:text="${token.userName}">John Smith</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Service</p>
+            <p class="info-value" th:text="${token.service}">Advice</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <!-- Set to Pending -->
+          <form th:action="@{/admin/status/{id}(id=${token.id})}" method="post">
+            <input type="hidden" name="status" value="PENDING" />
+            <button type="submit" class="btn btn-pending">Set Pending</button>
+          </form>
+
+          <!-- Complete and serve next -->
+          <form
+            th:action="@{/admin/complete-next/{id}(id=${token.id})}"
+            method="post"
+          >
+            <input type="hidden" name="status" value="COMPLETED" />
+            <button type="submit" class="btn btn-next">Complete & Next</button>
+          </form>
+
+          <!-- Back to Dashboard -->
+          <a
+            th:href="@{/admin/dashboard}"
+            style="grid-column: span 2; text-decoration: none"
+          >
+            <button type="button" class="btn btn-back">
+              Back to Dashboard
+            </button>
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

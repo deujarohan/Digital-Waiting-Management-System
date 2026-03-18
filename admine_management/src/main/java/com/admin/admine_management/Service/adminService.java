@@ -42,6 +42,22 @@ public class adminService {
         return null;  // No waiting tokens   
     }
 
+    public Token findById(Long id) {
+        return tokenRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Token not found"));
+    }
+
+    public void updateStatus(Long id, String status) {
+        Token token = tokenRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Token not found"));
+        token.setStatus(status);
+        tokenRepo.save(token);
+    }
+    
+    public void save(Token token) {
+        tokenRepo.save(token);
+    }
+
     // Delete token by ID
     public boolean deleteToken(Long id) {
         if (tokenRepo.existsById(id)) {

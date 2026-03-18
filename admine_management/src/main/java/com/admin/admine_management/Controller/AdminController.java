@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.queue_management.queue_management.Model.Token;
@@ -77,10 +78,47 @@ public class AdminController {
     // }
 
     // Serve next token
-    @PostMapping("/serve-next")
+    // Open serve page for a specific token
+    @GetMapping("/admin/serve/{id}")
+    public String serveTokenPage(@PathVariable Long id, Model model) {
+        Token token = adminService.findById(id);
+        token.setStatus("SERVING");
+        adminService.save(token);
+        model.addAttribute("token", token);
+        return "serve-token";
+    }
+
+    // Update status (pending or completed)
+    @PostMapping("/admin/status/{id}")
+    public String updateStatus(@PathVariable Long id,
+                            @RequestParam String status) {
+        adminService.updateStatus(id, status);
+        if (status.equals("COMPLETED")) {
+            return "redirect:/admin/tokens";
+        }
+        return "redirect:/admin/serve/" + id;
+    }
+
+    // Complete current and serve next in one action
+    @PostMapping("/admin/complete-next/{id}")
+    public String completeAndNext(@PathVariable Long id,
+                                @RequestParam(defaultValue = "COMPLETED") String status) {
+        adminService.updateStatus(id, status);
+        Token next = adminService.serveNextToken();
+        if (next == null) {
+            return "redirect:/admin/tokens";
+        }
+        return "redirect:/admin/serve/" + next.getId();
+    }
+
+    // Serve next — redirect to serve page
+    @PostMapping("/admin/serve-next")
     public String serveNextToken() {
-        adminService.serveNextToken();
-        return "redirect:/admin/dashboard";
+        Token next = adminService.serveNextToken();
+        if (next == null) {
+            return "redirect:/admin/tokens";
+        }
+        return "redirect:/admin/serve/" + next.getId();
     }
 
     //Postman delete token
@@ -111,21 +149,21 @@ public class AdminController {
     // }
 
     // Delete one token
-    @PostMapping("/delete/{id}")
+    @PostMapping("/admin/delete/{id}")
     public String deleteToken(@PathVariable Long id) {
         adminService.deleteToken(id);
         return "redirect:/admin/dashboard";
     }
 
     // Delete all tokens
-    @PostMapping("/delete-all")
+    @PostMapping("/admin/delete-all")
     public String deleteAllTokens() {
         adminService.deleteAllTokens();
         return "redirect:/admin/dashboard";
     }
 
     // Complete current token
-    @PostMapping("/complete/{id}")
+    @PostMapping("/admin/complete/{id}")
     public String completeToken(@PathVariable Long id) {
         adminService.completeToken(id);
         return "redirect:/admin/dashboard";
